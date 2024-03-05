@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+  git-inspired-backend-oct-fn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: git-inspired-backend-oct-fn
+    image: git-inspired-backend-oct-fn
+    restart: on-failure
+    ports:
+      - '4200:4200'

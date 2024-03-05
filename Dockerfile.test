@@ -1,0 +1,18 @@
+FROM node:18-bullseye
+
+WORKDIR /app
+
+EXPOSE 4200
+
+COPY package.json package-lock.json ./
+COPY .env .env
+
+RUN npm pkg delete scripts.postinstall
+
+
+RUN npm install
+
+
+COPY . .
+
+RUN npm run test
