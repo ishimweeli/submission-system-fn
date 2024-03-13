@@ -1,0 +1,14 @@
+.no-resource {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.no-resource img {
+  width: 442px;
+  height: 457.096px;
+}
+.no-resource p {
+  color: #31394e;
+}

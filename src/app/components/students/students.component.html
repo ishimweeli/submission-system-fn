@@ -1,0 +1,26 @@
+<div class="main-container">
+  <div class="dashboard-header">
+    <h1>students</h1>
+    <div class="upload-buttons">
+      <button (click)="createStudent()">
+        <span>Add new student</span><img src="../../../assets/icons/student-icon.svg" alt="" />
+      </button>
+      <button (click)="upload()">upload <img src="../../../assets/icons/upload-icon.svg" /></button>
+    </div>
+  </div>
+  <div *ngIf="tbData.length > 0; else notFound">
+    <app-table [tbData]="tbData"></app-table>
+    <div class="pagination">
+      <p>page {{ page }} of {{ totalPages$ | async }}</p>
+      <div class="btn">
+        <button (click)="onPageChange(page - 1)" [disabled]="page === 1">prev</button>
+        <button (click)="onPageChange(page + 1)" [disabled]="page === (totalPages$ | async)">
+          next
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #notFound>
+    <app-noresourcefound message="'students'"></app-noresourcefound>
+  </ng-template>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-assignment">
+  <h1>All assignments</h1>
+  <ng-container *ngIf="!(isLoading$ | async); else loading">
+    <div class="single-student-assignment">
+      <ng-container *ngFor="let d of data">
+        <div class="assignment-title">
+          <div class="paragraph">
+            <p>{{ d.assignment.title }}</p>
+            <p *ngIf="d.submitted === false;else submitted"><img src="../../../assets/icons/submit.svg" alt="" /> not submitted</p>
+            <ng-template #submitted>
+              <p><img src="../../../assets/icons/check-icon.svg" alt="" /> submitted</p>
+            </ng-template>
+          </div>
+          <div class="due">
+            <span>unique code:</span>
+            <span>{{ d.assignmentId }}</span>
+            <span>Due on:</span>
+            <span>{{ d.assignment.deadline | date }}</span>
+          </div>
+        </div>
+        <div class="assign-desc">
+          <span>description</span>
+          <p>
+            {{ d.assignment.description }}
+          </p>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>

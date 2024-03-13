@@ -1,0 +1,17 @@
+<div class=" {{ classMain }} ">
+  <div class="{{ classContainer }}">
+    <img src="../../../assets/images/logo.svg" alt="Logo" />
+    <div *ngFor="let item of Dashboard">
+      <div>
+        <p [routerLink]="item.link" class="{{ classLinks }}">{{ item.name }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="{{ classProfileContainer }}">
+    <button (click)="Logout()">logout</button>
+    <div class="{{ classProfile }}">
+      <span>{{firstName}}</span>
+      <a routerLink="/profile"> <img src="../../../assets/images/profile.svg" alt="" /></a>
+    </div>
+  </div>
+</div>

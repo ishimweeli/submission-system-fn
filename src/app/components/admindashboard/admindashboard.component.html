@@ -1,0 +1,60 @@
+<div class="dashboard-admin">
+  <div class="dashboard-container">
+    <div class="barner-content">
+      <div>
+        <h1>Welcome back, {{firstname }}</h1>
+        <p>
+          Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit
+          interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per
+          conubia nostra, per inceptos himenaeos.
+        </p>
+      </div>
+      <img src="../../../assets/images/dashboard-image.svg" alt="" />
+    </div>
+    <div class="overview-container">
+      <span>overview</span>
+      <div class="overview-cards">
+        <app-card
+          *ngIf="dashboard$ | async as lecture"
+          [length]="lecture.data.lecturers"
+          [imgSrc]="'../../../assets/icons/student-icon.svg'"
+          [cardText]="'lecturers'"
+        ></app-card>
+        <app-card
+          *ngIf="dashboard$ | async as students"
+          [length]="students.data.students"
+          [imgSrc]="'../../../assets/icons/student-icon.svg'"
+          [cardText]="'students'"
+        ></app-card>
+        <app-card
+          *ngIf="dashboard$ | async as students"
+          [length]="students.data.assignments"
+          [imgSrc]="'../../../assets/icons/student-icon.svg'"
+          [cardText]="'Assignment created'"
+        ></app-card>
+        <app-card
+          *ngIf="dashboard$ | async as students"
+          [length]="students.data.submissions"
+          [imgSrc]="'../../../assets/icons/student-icon.svg'"
+          [cardText]="'submissions'"
+        ></app-card>
+      </div>
+    </div>
+    <div class="statistics-container">
+      <span>Activities of users</span>
+      <div>
+        <canvas baseChart #myChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+            ></canvas>
+      </div>
+      
+    </div>
+  </div>
+  <div class="dashboard-side-container">
+    <div class="notifications-container"></div>
+    <div class="assingment-container"></div>
+  </div>
+</div>

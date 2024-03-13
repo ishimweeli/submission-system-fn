@@ -1,0 +1,98 @@
+.container {
+  width: 1200px;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  left: 13rem;
+}
+.container h1 {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  left: 5rem;
+  color: #101828;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.container h1 span {
+  color: #087443;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+.assignment-card-container {
+  margin: 0 8rem;
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+}
+.nav-container {
+  width: 100%;
+  position: relative;
+  margin-top: 3rem;
+  left: 5rem;
+  height: 80px;
+  display: flex;
+  padding: 0 0 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-container .search-container {
+  width: 349px;
+  height: 34px;
+  position: relative;
+}
+.nav-container .search-container img {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+.nav-container input[type='text'] {
+  display: flex;
+  width: 349px;
+  height: 34px;
+  padding-left: 50px;
+  border-radius: 8px;
+  border: 1px solid #9f9f9f;
+}
+.nav-container .search-container input[type='text']:focus {
+  outline: none;
+}
+.sort-by {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.nav-container .sort-by button {
+  display: flex;
+  padding: 7px 24px 8px 23px;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  border-radius: 8px;
+  background-color: #170e7d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.sort-by button img {
+  margin-left: 5px;
+}
+.sort-by select {
+  color: #101828;
+  width: 100px;
+  height: 24px;
+}
+.sort-bys select:focus {
+  outline: none;
+}

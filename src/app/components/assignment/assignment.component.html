@@ -1,0 +1,28 @@
+<div class="assignment-card">
+  <h1>{{ title }}</h1>
+  <div class="assignment-desc-container">
+    <div class="assgn-desc">
+      <a [routerLink]="['/lecturer/assignment', uniqueCode]">
+        <div class="description-assign">
+          <span>Description</span>
+          <p>{{ description }}</p>
+        </div>
+      </a>
+      <div class="assgn-actions-container">
+        <span>{{ DeadLine | date }}</span>
+        <div class="actions">
+          <img src="../../../assets/icons/edit-icon.svg" (click)="UpdateAssignment()" alt="" />
+          <img src="../../../assets/icons/delete-icon.svg" (click)="DeleteAssignment()" alt="" />
+          <img src="../../../assets/icons/student-icon.svg" (click)="inviteStudent()" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="unique">
+      <span>Unique code</span>
+      <div class="uniqueCode-copy">
+        <p>{{ uniqueCode }}</p>
+        <img src="../../../assets/icons/copy-icon.svg" alt="" (click)="copyToclpboard()" />
+      </div>
+    </div>
+  </div>
+</div>

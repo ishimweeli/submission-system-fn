@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="nav-container">
+    <div class="search-container">
+      <input type="text" placeholder="search" [(ngModel)]="searchText" />
+      <img src="../../../assets/icons/search-user-icon.svg" alt="" />
+    </div>
+    <div class="sort-by">
+      <form [formGroup]="selectForm">
+        <select formControlName="sortBy" (change)="onSelect()">
+          <option value="sort-by" disabled selected>sort by</option>
+          <option value="title">title</option>
+          <option value="date">date</option>
+        </select>
+      </form>
+      <button (click)="createAssignment()">
+        Assignment <img src="../../../assets/icons/add-icon.svg" alt="" />
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="!(isLoading$ | async); else loading">
+    <h1>
+      All assignments <span> {{ assignment.length }}</span>
+    </h1>
+    <div *ngIf="assingment$ | async as assignments">
+      <div class="assignment-card-container" *ngIf="assignments.length > 0;else empty">
+        <ng-container *ngFor="let assignment of assignments | FilterPipe: searchText">
+          <app-assignment
+            *ngIf="assignment.isDraft === false"
+            [title]="assignment.title"
+            [description]="assignment.description"
+            [DeadLine]="assignment.deadline"
+            [uniqueCode]="assignment.assignmentId"
+            (deleteId)="DeleteFailureAssignment(assignment.id)"
+            (updateAssignment)="updateAssignment(assignment.assignmentId)"
+            (inviteStudentId)="inviteStudent(assignment.assignmentId,assignment.assignmentId)"
+            (copToClipboard)="copyToclipBoard(assignment.assignmentId)"
+          >
+          </app-assignment>
+        </ng-container>
+      </div>
+    </div>
+    <ng-template #empty>
+      <app-noresourcefound message="assignments"></app-noresourcefound>
+    </ng-template>
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>

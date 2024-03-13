@@ -1,0 +1,124 @@
+.form-container {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  display: inline-flex;
+  position: relative;
+  padding: 20px 32px;
+  width: 450px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  box-shadow: 0px 0px 32px #d3d0d0;
+}
+
+form h1 {
+  color: #334054;
+  font-family: Work Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  width: 100%;
+}
+
+form button {
+  width: 100%;
+  background-color: #170e7d;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  color: #dfe9fa;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.form-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-contents input {
+  width: 400px;
+  height: 44px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+}
+.error input {
+  width: 400px;
+  height: 44px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  border: 1px solid red;
+}
+.form-contents input::placeholder {
+  text-transform: capitalize;
+}
+.form-contents input:focus {
+  border: 1px solid #d0d5dd;
+  outline: none;
+}
+.error input:focus {
+  border: 1px solid red;
+  outline: none;
+}
+.form-contents label {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.password-controler {
+  position: relative;
+  width: 100%;
+}
+.password-controler img {
+  position: absolute;
+  right: 25px;
+  top: 55px;
+  cursor: pointer;
+}
+
+.password-error-container {
+  position: absolute;
+  width: fit-content;
+  display: grid;
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #c2c8d0;
+  right: 29px;
+  top: 270px;
+  gap: 8px;
+}
+.password-error-container p {
+  color: #000;
+  font-size: 14px;
+  width: 100%;
+}
+.label-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.label-container span {
+  color: #858585;
+  font-size: 14px;
+  margin-left: 10px;
+}

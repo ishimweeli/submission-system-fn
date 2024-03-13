@@ -1,0 +1,26 @@
+<div class="model-delete-container">
+  <div class="modal-delete">
+    <h1>Download snapshot/submission</h1>
+    <div class="delete-btn">
+      <button
+        [disabled]="(loading$ | async) || (snapshotLoading$ | async)"
+        (click)="downloadSnapshot()"
+        *ngIf="!(snapshotLoading$ | async); else loading"
+      >
+        download snapshot
+      </button>
+      <button
+        [disabled]="(loading$ | async) || (snapshotLoading$ | async)"
+        (click)="downloadSubmission()"
+        *ngIf="!(loading$ | async); else loading"
+      >
+        download submission
+      </button>
+      <ng-template #loading>
+        <button [disabled]="(loading$ | async) || (snapshotLoading$ | async)">
+          <app-spinner></app-spinner>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</div>

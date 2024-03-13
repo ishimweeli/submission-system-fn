@@ -1,0 +1,39 @@
+.card-container {
+  height: 88.07px;
+  width:209.54px;
+  background-color: #f7f9fb;
+  border-radius: 7.592px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.card-container img {
+  position: relative;
+  background-color: #e5e3fe;
+  display: inline-flex;
+  padding: 12.147px;
+  align-items: flex-start;
+  gap: 7.592px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.card-container .card-items {
+  height: 42px;
+  display: grid;
+}
+.card-container .card-items h2 {
+  color: #06152b;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+.card-container .card-items p {
+  color: #788b9a;
+  font-size: 12px;
+  width: fit-content;
+}

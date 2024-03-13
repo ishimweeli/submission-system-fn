@@ -1,0 +1,77 @@
+<main class="container">
+  <div class="login-barner">
+    <div class="barner-content">
+      <h1>A Git- Inspired Assignment submission system</h1>
+      <p>
+        Vorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
+        libero et velit interdum, ac aliquet odio mattis. Class aptent taciti
+        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
+    </div>
+    <img src="../../../assets/images/barner.svg" alt="" />
+  </div>
+  <div class="form-container">
+    <form [formGroup]="LoginForm">
+      <h1>Welcome back, log in</h1>
+      <div *ngIf="loginFailure">
+        <app-error [message]="error"></app-error>
+      </div>
+      <div [class]="ShowPasswordErrors('email') ? 'error' : 'form-contents'">
+        <label>email/Staff ID</label>
+        <input
+          type="text"
+          placeholder="enter your email"
+          formControlName="email"
+        />
+      </div>
+      <ng-container *ngIf="ShowPasswordErrors('email')">
+        <app-error [message]="getEmailRequirement('pattern')"></app-error>
+      </ng-container>
+      <div class="password-controler">
+        <div
+          [class]="ShowPasswordErrors('password') ? 'error' : 'form-contents'"
+        >
+          <label>password</label>
+          <input
+            [type]="passwordVisibility ? 'text' : 'password'"
+            placeholder="enter your password"
+            formControlName="password"
+          />
+        </div>
+        <img
+          src="../../../assets/icons/eye-icon.svg"
+          alt="togglepassword"
+          (click)="showPassword()"
+        />
+      </div>
+      <div
+        class="password-error-container"
+        *ngIf="ShowPasswordErrors('password')"
+      >
+        <p>Your password must contain:</p>
+        <div *ngFor="let requirement of PasswordRequirements[1]">
+          <div class="label-container">
+            <img
+              [src]="
+                shouldShowPasswordRequirementError(requirement, 'password')
+                  ? ' ./../../assets/icons/check-icon-red.svg'
+                  : './../../assets/icons/check-icon.svg'
+              "
+              alt=""
+            />
+            <span>{{ getPasswordRequirementText(requirement) }}</span>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="!(isloading$ | async); else loading">
+        <button (click)="onSubmit()" [disabled]="LoginForm.invalid ||( isloading$ | async)">Log in</button>
+      </ng-container>
+      <ng-template #loading>
+        <button (click)="onSubmit()" [disabled]="LoginForm.invalid || ( isloading$ | async)">
+          <span class="loader"></span> Log in
+        </button>
+      </ng-template>
+    </form>
+    <div></div>
+  </div>
+</main>

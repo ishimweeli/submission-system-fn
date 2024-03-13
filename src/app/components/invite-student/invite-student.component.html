@@ -1,0 +1,53 @@
+<div class="modal-invite-container">
+  <div class="invite-student-container">
+    <h1>Invite student</h1>
+    <button type="button" (click)="dismiss()">
+      <img src="../../../assets/icons/dismiss-icon.svg" alt="" />
+    </button>
+    <div class="search">
+      <input type="text" [(ngModel)]="searchText" placeholder="search by name, email" />
+      <img src="../../../assets/icons/search-user-icon.svg" alt="" />
+    </div>
+    <form [formGroup]="CheckForm">
+      <ng-container *ngIf="!(LoadingStudent$ | async); else Loading">
+        <ng-container *ngIf="students | FilterPipe: searchText">
+          <div class="invite-student">
+            <div class="invite-check">
+              <label>
+                <ng-container *ngFor="let student of students; let i = index">
+                  <div class="label" *ngIf="student.invited === true">
+                    <p [ngStyle]="{ background: colors[i] }">
+                      {{ student.firstName | trim }}
+                    </p>
+                    <div class="invite-name">
+                      <span>{{ student.firstName }} {{ student.lastName }} </span>
+                      <span>{{ student.email }}</span>
+                    </div>
+                    <input type="checkbox" [value]="student.id" (change)="toggleStudent($event)" />
+                  </div>
+                </ng-container>
+              </label>
+            </div>
+            <span style="color: rgb(204, 63, 63); margin-top: 1rem">{{ error$ | async }}</span>
+            <button
+              type="submit"
+              (click)="inviteStudent(assignmentId)"
+              *ngIf="!(isLoading$ | async); else isLoading"
+              [disabled]="CheckForm.controls['studentIds'].value === []"
+            >
+              publish
+            </button>
+            <ng-template #isLoading>
+              <button type="submit" (click)="inviteStudent(assignmentId)">
+                <span class="loader"></span> publish
+              </button>
+            </ng-template>
+          </div>
+        </ng-container>
+      </ng-container>
+    </form>
+    <ng-template #Loading>
+      <app-spinner></app-spinner>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="main-container">
+  <div class="dashboard-header">
+    <h1>Lecturer</h1>
+    <div class="upload-buttons">
+      <button (click)="create()">
+        <span>Add new lecturer</span><img src="../../../assets/icons/student-icon.svg" alt="" />
+      </button>
+      <button (click)="upload()">upload <img src="../../../assets/icons/upload-icon.svg" /></button>
+    </div>
+  </div>
+  <div *ngIf="(lecturers$ | async)?.lecturer?.data?.lecturers as lecture">
+    <ng-container *ngIf="lecture.length > 0; else noitems">
+      <app-table [tbData]="lecture"></app-table>
+      <div class="pagination">
+        <p>page {{ page }} of {{ totalPages$ | async }}</p>
+        <div class="btn">
+          <button (click)="onPageChange(page - 1)" [disabled]="page === 1">prev</button>
+          <button (click)="onPageChange(page + 1)" [disabled]="page === (totalPages$ | async)">
+            next
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="(lecturers$ | async)?.error?.error?.error as error">
+    <span style="color: red">{{ error }}</span>
+  </div>
+</div>
+<ng-template #noitems>
+  <div class="main-container">
+    <app-noresourcefound [message]="'lecturers'"></app-noresourcefound>
+  </div>
+</ng-template>

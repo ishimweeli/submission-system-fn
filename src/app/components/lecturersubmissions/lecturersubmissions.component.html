@@ -1,0 +1,39 @@
+<div class="sub-container">
+  <div class="nav-container">
+    <div class="search-container">
+      <input type="text" placeholder="search" [(ngModel)]="searchText" />
+      <img src="../../../assets/icons/search-user-icon.svg" alt="" />
+    </div>
+    <div class="sort-by">
+      <button (click)="createAssignment()">
+        Assignment <img src="../../../assets/icons/add-icon.svg" alt="" />
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="!(isLoading$ | async); else loading">
+    <ng-container *ngIf="data$ | async as data">
+      <div class="sub-card-container">
+        <ng-container *ngFor="let data of data.data | FilterPipe: searchText">
+          <div class="sub-card" [routerLink]="['/lecturer/submissions/', data.assignmentId]">
+            <img src="../../../assets/icons/folder-icon.svg" alt="" />
+            <div class="sub-title">
+              <h2>{{ data.title | trimName }}</h2>
+              <span>{{ data.submissions.length }} submissions</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="data$ | async as data">
+      <app-noresourcefound message="submissions" *ngIf="data.data.length <= 0"></app-noresourcefound>
+    </ng-container>
+    <ng-template #empty> </ng-template>
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+  <div class="sub-card-container">
+    <span>{{ error$ | async }}</span>
+  </div>
+  
+</div>

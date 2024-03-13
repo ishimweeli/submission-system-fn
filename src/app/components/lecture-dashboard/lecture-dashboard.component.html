@@ -1,0 +1,12 @@
+<div class="lect-dashboard">
+  <app-dashboard
+    (logout)="logout()"
+    [Dashboard]="Dashboard"
+    [classContainer]="'lecture-container'"
+    [classMain]="'lecture-dashboard '"
+    [classLinks]="'links'"
+    [classProfileContainer]="'lecture-profile '"
+    [classProfile]="'profile'"
+  ></app-dashboard>
+  <router-outlet></router-outlet>
+</div>

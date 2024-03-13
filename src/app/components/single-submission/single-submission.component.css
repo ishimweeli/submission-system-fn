@@ -1,0 +1,228 @@
+.sub-container {
+  width: 1450px;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  left: 13rem;
+  padding-top: 1rem;
+}
+.sub-card-container {
+  width: 1200px;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+}
+.sub-card {
+  position: relative;
+  min-width: 607px;
+  height: 159px;
+  border-radius: 8px;
+  border: 1px solid #dedede;
+  background: transparent;
+  display: flex;
+  left: 4rem;
+  margin-top: 1rem;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sub-title {
+  margin-left: 20px;
+}
+.sub-title h2 {
+  color: #31394e;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.sub-title span {
+  color: #1a9e27;
+  font-weight: 700;
+}
+
+.submissions-container {
+  display: flex;
+  background-color: transparent;
+  position: relative;
+  left: -5rem;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 1171px;
+  height: 690px;
+  border-radius: 8px;
+  border: 1px solid #dedede;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: 0.5s ease-in-out;
+}
+.submissions-container-small {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-top: 10px;
+  left: 2.5rem;
+  width: 1400px;
+  height: 690px;
+  border-radius: 8px;
+  border: 1px solid #dedede;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: 0.5s ease-in-out;
+}
+.student-list {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  overflow-y: scroll;
+  border-right: 1px solid #dedede;
+}
+.small-list-student {
+  height: 100%;
+  width: 10%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+  overflow-y: scroll;
+  border-right: 1px solid #dedede;
+}
+.student-list button {
+  width: 180px;
+  margin: 10px auto 0 auto;
+  height: 51px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #31394e;
+  font-weight: 400;
+}
+.small-list-student button {
+  width: 100%;
+  margin: 10px auto 0 auto;
+  height: 51px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #31394e;
+  font-weight: 400;
+}
+.student-list button:hover {
+  background: #f2f2f2;
+  width: 180px;
+  transition: 500ms ease-in-out;
+}
+.small-list-student button:hover {
+  background: #f2f2f2;
+}
+.snapshot-download {
+  width: 99%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  background-color: #fff;
+  justify-content: right;
+  align-items: center;
+  height: 60px;
+  padding: 5px;
+  margin: 0 auto;
+  border-bottom: 0.5px solid #b9bbbe;
+  z-index: 10;
+}
+.snapshot-download button {
+  display: flex;
+  padding: 5px 4px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  border-radius: 8px;
+  background: #1a9e27;
+  margin-left: 5px;
+}
+.file-container {
+  width: 100%;
+  height: 100%;
+}
+.file-content-container {
+  width: 100%;
+  height: 630px;
+  display: flex;
+}
+
+.file-content {
+  width: 97%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+}
+.file-name {
+  width: 99%;
+  height: 60px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-bottom: 0.5px solid #b9bbbe;
+}
+.file-name span {
+  margin-left: 10px;
+  color: #31394e;
+  font-weight: 400;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.small-file-content {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: left;
+  padding-left: 5px;
+  border-bottom: 0.5px solid #b9bbbe;
+  border-right: 0.5px solid #b9bbbe;
+}
+.small-file-content-container {
+  height: 630px;
+  display: flex;
+  width: 1000px;
+  background-color: #31394e;
+}
+.small-file-content-container .file-content {
+  width: 300px;
+  margin: 0 auto;
+}
+.select-container {
+  width: 980px;
+  height: 100%;
+  overflow-x: scroll;
+}
+pre {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 14px;
+  color: #31394e;
+}
+.spinner-download {
+  position: relative;
+  right: 15rem;
+}
+.submission-code {
+  width: fit-content;
+  display: flex;
+  margin-right: 5px;
+  justify-content: space-between;
+}
+.submission-code span {
+  margin-right: 10px;
+}

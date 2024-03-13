@@ -1,0 +1,46 @@
+<div class="container-modal">
+  <div class="lougout-container">
+    <div class="modal-title">
+      <div>
+        <h4>{{ title }}</h4>
+        <span>Please fill the following details to get started</span>
+      </div>
+      <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="Form">
+        <input
+          type="email"
+          placeholder="email"
+          formControlName="email"
+          [style]="getInputControl('email') ? 'border: 1px solid red' : ''"
+        />
+        <input
+          type="text"
+          placeholder="firstname"
+          formControlName="firstName"
+          [style]="getInputControl('firstName') ? 'border: 1px solid red' : ''"
+        />
+        <input
+          type="text"
+          placeholder="lastname"
+          formControlName="lastName"
+          [style]="getInputControl('lastName') ? 'border: 1px solid red' : ''"
+        />
+      </form>
+    </div>
+    <span *ngIf="error$ | async" style="color: red;">{{ error$ | async }}</span>
+    <div class="modal-footer" *ngIf="!(loading$ | async); else loading">
+      <button type="submit" (click)="create()">create</button>
+    </div>
+    <ng-template #loading>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="this.Form.invalid || (loading$ | async)">
+          <app-spinner></app-spinner> create
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

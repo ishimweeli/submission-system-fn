@@ -1,0 +1,107 @@
+.sub-container {
+  width: 1200px;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  left: 13rem;
+}
+.sub-card-container {
+  width: 1200px;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  padding-left: 6rem;
+}
+.sub-card {
+  width: 349px;
+  height: 165px;
+  border-radius: 8px;
+  border: 1px solid #dedede;
+  background: transparent;
+  margin: 30px 0 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sub-title {
+  margin-left: 20px;
+}
+.sub-title h2 {
+  color: #31394e;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.sub-title span {
+  color: #1a9e27;
+  font-weight: 700;
+}
+.nav-container {
+  width: 100%;
+  position: relative;
+  margin-top: 3rem;
+  left: 5rem;
+  height: 80px;
+  display: flex;
+  padding: 0 0 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-container .search-container {
+  width: 349px;
+  height: 34px;
+  position: relative;
+}
+.nav-container .search-container img {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+.nav-container input[type='text'] {
+  display: flex;
+  width: 349px;
+  height: 34px;
+  padding-left: 50px;
+  border-radius: 8px;
+  border: 1px solid #9f9f9f;
+}
+.nav-container .search-container input[type='text']:focus {
+  outline: none;
+}
+.sort-by {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.nav-container .sort-by button {
+  display: flex;
+  padding: 7px 24px 8px 23px;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  border-radius: 8px;
+  background-color: #170e7d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.sort-by button img {
+  margin-left: 5px;
+}
+.sort-by select {
+  color: #101828;
+  width: 100px;
+  height: 24px;
+}
+.sort-bys select:focus {
+  outline: none;
+}

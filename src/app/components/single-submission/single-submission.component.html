@@ -1,0 +1,69 @@
+<div class="sub-container">
+  <ng-container *ngIf="!(isLoading$ | async); else loading">
+    <ng-container *ngFor="let item of assignment">
+      <div class="sub-card" *ngIf="item.submissions.length > 0">
+        <img src="../../../assets/icons/folder-icon.svg" alt="" />
+        <div class="sub-title">
+          <h2>{{ item.title }}</h2>
+          <span>{{ item.submissions.length }} submissions</span>
+        </div>
+      </div>
+      <div [class]="content === null ? 'submissions-container' : 'submissions-container-small'">
+        <div [class]="content === null ? 'student-list' : 'small-list-student'">
+          <ng-container *ngFor="let student of item.submissions">
+            <button (click)="loadStudentSubmissionsWithFile(student.studentId)">
+              {{ student.student.firstName }}
+            </button>
+          </ng-container>
+        </div>
+        <div class="file-container">
+          <div class="snapshot-download">
+            <app-spinner *ngIf="extractingLoading$ | async" class="spinner-download"></app-spinner>
+            <ng-container *ngIf="snapshotForm.controls['snapshot'].value">
+              <div *ngFor="let snapshot of item.submissions" class="submission-code">
+                <span>Code: {{ snapshot.submissionCode }}</span>
+                <span>Snapshot id: {{ snapshotForm.controls['snapshot'].value }}</span>
+              </div>
+            </ng-container>
+            <form [formGroup]="snapshotForm">
+              <select formControlName="snapshot" (change)="onChange()">
+                <ng-container>
+                  <ng-container *ngFor="let snapshot of item.submissions">
+                    <option [value]="s.id" *ngFor="let s of snapshot.snapshots; let i = index">
+                      snapshot {{ i + 1 }}
+                    </option>
+                  </ng-container>
+                </ng-container>
+              </select>
+            </form>
+            <button (click)="download()">
+              Download <img src="../../../assets/icons/download-icon.svg" alt="" />
+            </button>
+          </div>
+          <div class="file-content-container">
+            <div [class]="content === null ? 'file-content' : 'small-file-content'">
+              <ng-container *ngFor="let item of contents; let i = index">
+                <div class="file-name">
+                  <img src="../../../assets/icons/file.svg" alt="" />
+                  <span (click)="showContent(i)">{{ item.fileName | trimName }}</span>
+                </div>
+              </ng-container>
+            </div>
+            <div *ngIf="content" class="select-container">
+              <pre>{{ content }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #nosubmission>
+        <div class="img-container">
+          <img src="../../../assets/images/no-assignments.svg" alt="" />
+        </div>
+        <span>No submissions yet.</span>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>

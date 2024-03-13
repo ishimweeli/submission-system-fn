@@ -1,0 +1,82 @@
+<div class="create-container">
+  <div class="create-assgn-container">
+    <button type="button" class="close"  (click)="dismiss()">
+      <img src="../../../assets/icons/dismiss-icon.svg" alt="">
+    </button>
+    <div class="create-form">
+      <h1>Create new assignment</h1>
+      <form [formGroup]="assignmentsForm">
+        <div class="form">
+          <label>title</label>
+          <input type="text" placeholder="eg. javascript" formControlName="title" />
+          <label>DeadLine</label>
+          <input type="date" placeholder="dd/mm/yy" formControlName="deadLine" />
+          <label>Assignment description</label>
+          <ckeditor [editor]="editor" formControlName="description" id="editor"></ckeditor>
+        </div>
+        <ng-container *ngIf="(error$ | async) || (saveError$ | async) as error">
+          <span style="color: red">{{ error }}</span>
+        </ng-container>
+        <div class="btn">
+          <ng-container>
+            <button
+              type="submit"
+              *ngIf="!(Loading$ | async); else saveLoading"
+              (click)="onPublish()"
+              
+            >
+              Save and publish
+            </button>
+            <ng-template #saveLoading>
+              <button type="submit"><span class="loader"></span> Save and publish</button>
+            </ng-template>
+            <button type="submit" (click)="onDraft()" *ngIf="!(isLoading$ | async); else loading">
+              Save as draft
+            </button>
+            <ng-template #loading>
+              <button type="submit"><span class="loader"></span> Save as Draft</button>
+            </ng-template>
+          </ng-container>
+        </div>
+      </form>
+    </div>
+    <div class="invite-student-container">
+      <h1>Invite student</h1>
+      <div class="search">
+        <input type="text" [(ngModel)]="searchText" placeholder="search by name, email" />
+        <img src="../../../assets/icons/search-user-icon.svg" alt="" />
+      </div>
+      <form [formGroup]="CheckForm">
+        <ng-container *ngIf="!(LoadingStudent$ | async); else Loading">
+          <ng-container *ngIf="students$ | async | FilterPipe: searchText as student">
+            <div class="invite-student">
+              <div class="invite-check">
+                <label>
+                  <ng-container *ngFor="let student of student; let i = index">
+                    <div class="label">
+                      <p [ngStyle]="{ background: colors[i] }">
+                        {{ student.firstName | trim }}
+                      </p>
+                      <div class="invite-name">
+                        <span>{{ student.firstName }} {{ student.lastName }} </span>
+                        <span>{{ student.email | trimName }}</span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        [value]="student.id"
+                        (change)="toggleStudent($event)"
+                      />
+                    </div>
+                  </ng-container>
+                </label>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </form>
+      <ng-template #Loading>
+        <app-spinner></app-spinner>
+      </ng-template>
+    </div>
+  </div>
+</div>

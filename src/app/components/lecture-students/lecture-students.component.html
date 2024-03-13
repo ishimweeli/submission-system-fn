@@ -1,0 +1,29 @@
+<div class="main-container">
+  <div class="search">
+    <div class="search-container">
+      <input type="text" placeholder="search" [(ngModel)]="searchText"/>
+      <img src="../../../assets/icons/search-user-icon.svg" alt="" />
+    </div>
+    <button (click)="createAssignment()">
+      assignment <img src="../../../assets/icons/add-icon.svg" alt="" />
+    </button>
+  </div>
+  <div class="dashboard-header">
+    <h1>All students</h1>
+  </div>
+  <div *ngIf="!(loading$ | async); else loading">
+    <app-table [tbData]="tbData | FilterPipe:searchText"></app-table>
+    <div class="pagination">
+      <p>page {{ page }} of {{ totalPages$ | async }}</p>
+      <div class="btn">
+        <button (click)="onPageChange(page - 1)" [disabled]="page === 1">prev</button>
+        <button (click)="onPageChange(page + 1)" [disabled]="page === (totalPages$ | async)">
+          next
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>

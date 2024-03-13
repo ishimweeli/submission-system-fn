@@ -1,0 +1,37 @@
+<div class="draft-container">
+  <ng-container *ngIf="!(isloading$ | async); else loading">
+    <ng-container *ngIf="assinment.length > 0; else notFound">
+      <ng-container *ngFor="let ass of assinment">
+        <ng-container>
+          <div class="draft-assignment">
+            <h2>{{ ass.title }}</h2>
+            <p>{{ ass.description }}</p>
+            <div class="draft-actions">
+              <div>
+                <span>{{ ass.deadline | date }}</span>
+              </div>
+              <div>
+                <img
+                  src="../../../assets/icons/delete-icon.svg"
+                  (click)="deleteDraft(ass.id)"
+                  alt="delete"
+                />
+                <img
+                  src="../../../assets/icons/edit-icon.svg"
+                  (click)="updateDraft(ass.assignmentId)"
+                  alt="edit"
+                />
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-template #notFound>
+    <app-noresourcefound message="drafts"></app-noresourcefound>
+  </ng-template>
+  <ng-template #loading> 
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>

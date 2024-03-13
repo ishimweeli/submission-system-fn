@@ -1,0 +1,60 @@
+.main-container {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+.main-container h1 {
+  text-transform: capitalize;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 960px;
+  margin: 10px auto;
+  
+}
+
+.dashboard-header button {
+  display: inline-flex;
+  width: 200px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  background: #170e7d;
+  color: #fff;
+  cursor: pointer;
+}
+.dashboard-header button span {
+  margin-right: 5px;
+}
+
+.dashboard-header input[type='file'] {
+  display: none;
+}
+
+.dashboard-header label {
+  text-transform: capitalize;
+  margin-left: 30px;
+  font-weight: 700;
+  font-size: 20px;
+  align-items: center;
+  color: #170e7d;
+  cursor: pointer;
+}
+.upload-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-buttons button:last-child{
+  background-color: transparent;
+  width: 90px;
+  color: black;
+}

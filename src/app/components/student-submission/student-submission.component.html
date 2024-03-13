@@ -1,0 +1,50 @@
+<div class="assingment-cont">
+  <div class="heading">
+    <div>
+      <h1>All Assigments</h1>
+      <p>{{ (data$ | async)?.length }}</p>
+    </div>
+    <form [formGroup]="filterForm">
+      <select formControlName="filter" (change)="onChange()">
+        <option disabled selected>filter by deadline</option>
+        <option value="asc">ascending</option>
+        <option value="desc">descending</option>
+      </select>
+    </form>
+  </div>
+  <ng-container *ngIf="!(isLoading$ | async); else loading">
+    <ng-container *ngIf="data | OrderBy:filterBy">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Dead line</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let assinment of data">
+          <tr [routerLink]="['/student', assinment.assignmentId]">
+            <td>{{ assinment.assignment.title }}</td>
+            <td><p>Submitted</p></td>
+            <td>
+              {{ assinment.assignment.description }}
+            </td>
+            <td>{{ assinment.assignment.deadline | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+  <ng-container *ngIf="data$ | async as data">
+    <div class="not" *ngIf="data.length === 0 && !(isLoading$ | async)">
+      <div class="img-container">
+        <img src="../../../assets/images/no-assignments.svg" alt="" />
+      </div>
+      <span>No assignment yet. Kindly contact your lecturer</span>
+    </div>
+  </ng-container>
+</div>

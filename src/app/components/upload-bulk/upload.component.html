@@ -1,0 +1,43 @@
+<div class="container-modal">
+  <div class="lougout-container">
+    <div class="modal-title">
+      <div>
+        <h4>Upload a file</h4>
+        <span>Please upload a file to get started</span>
+      </div>
+      <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <img src="../../../assets/images/log.svg" alt="" />
+      <div *ngIf="!files; else uploadButton">
+        <label for="file-upload">upload a file </label>
+        <input type="file" name="" id="file-upload" (change)="onChange($event)" accept=".CSV"/>
+      </div>
+      <div *ngIf="!files" class="drop-file" appDrag (fileUpload)="fileUpload($event)">
+        <span> or drop a file</span>
+      </div>
+      <div class="drop-file">
+        <span *ngIf="files">{{ files.name }}</span>
+      </div>
+      <ng-template #uploadButton>
+        <div class="upload-buttons">
+          <button (click)="onUpload()" *ngIf="!(loading$ | async); else loading">upload</button>
+        </div>
+        <ng-template #loading>
+          <div class="upload-buttons">
+            <button (click)="onUpload()"><app-spinner></app-spinner> upload</button>
+          </div>
+        </ng-template>
+      </ng-template>
+      <div *ngIf="error$ | async as error" class="error">
+        <span>{{error}}</span>
+      </div>
+      <div class="n-b">
+        <h4>NB:Only CSV file accepted</h4>
+        <span>It must have a required columns of emails. firstname and lastname</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="single-assingment-container">
+    <ng-container *ngIf="!(isLoading$ | async);else loading">
+    <h1>assignment</h1>
+    <div class="assinment-table">
+      <ng-container *ngIf="assingment$ | async as assignment">
+        <div class="assignment-title">
+          <h2> 
+            {{ assignment.data.title }}
+            <img src="../../../assets/icons/edit-icon.svg" alt="" />
+          </h2>
+          <div class="copy">
+            <span style="color: #31394e"> unique Code </span>
+            <span style="color: #5c34ec; font-weight: 700" >
+              {{ assignment.data.assignmentId }}</span
+            >
+            <img src="../../../assets/icons/copy-icon.svg" alt="" (click)="copy(assignment.data.assignmentId)"/>
+          </div>
+        </div>
+        <div class="assignment-description">
+          <h4>Description</h4>
+          <span>{{ assignment.data.deadline | date }}</span>
+          <p>{{ assignment.data.description }}</p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="student-table">
+      <ng-container *ngIf="assingment$ | async as assign">
+        <div class="student-length">
+          <h1>students</h1>
+          <span>{{ assign.data.AssignmentToUser.length }}</span>
+          <span>students</span>
+          <img
+            src="../../../assets/icons/add-student-icon.svg"
+            alt=""
+            (click)="invite(assingmentId, assign.data.assignmentId)"
+          />
+        </div>
+        <ng-container *ngFor="let ass of assign.data.AssignmentToUser">
+          <div class="invited">
+            <img src="../../../assets/images/profile.svg" alt="" />
+            <div>
+              <p>{{ ass.user.email }}</p>
+              <span>(invited)</span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <a routerLink="/lecturer/students">see all students</a>
+  </ng-container>
+  </div>
+<ng-template #loading>
+<app-spinner></app-spinner>
+</ng-template>

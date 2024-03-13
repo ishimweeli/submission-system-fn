@@ -1,0 +1,56 @@
+<ng-container *ngIf="!url.includes('/lecturer/drafts'); else draft">
+  <div class="create-container">
+    <div class="create-form">
+      <div class="modal-title">
+        <h1>Create new assignment</h1>
+        <button type="button" class="close" (click)="dismiss()">
+          <img src="../../../assets/icons/dismiss-icon.svg" alt="" />
+        </button>
+      </div>
+      <form [formGroup]="updateForm">
+        <div class="form">
+          <label>title</label>
+          <input type="text" formControlName="title" />
+          <label>DeadLine</label>
+          <input type="date" formControlName="deadline" [min]="minDate" />
+          <label>Assignment description</label>
+          <ckeditor [editor]="editor" formControlName="description" id="editor"></ckeditor>
+        </div>
+        <ng-container> </ng-container>
+        <div class="btn">
+          <ng-container>
+            <button
+              *ngIf="!(isLoading$ | async); else saveLoading"
+              type="submit"
+              (click)="patchData(id)"
+              [disabled]="updateForm.invalid"
+            >
+              Save
+            </button>
+            <ng-template #saveLoading>
+              <button type="submit"><span class="loader"></span> Save</button>
+            </ng-template>
+          </ng-container>
+          <ng-template #saveLoading>
+            <button type="submit"><span class="loader"></span> Save</button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+<ng-template #draft>
+  <div class="create-container">
+    <div class="create-form-draft">
+      <h1>
+        Are you sure you want to update this assignment
+        <span>{{ updateForm.controls['title'].value }}</span>
+      </h1>
+      <span style="color: rgb(203, 41, 41)">{{ error$ | async }}</span>
+      <div class="btn">
+        <button (click)="dismiss()">cancel</button>
+        <button (click)="publish(id)">update</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
